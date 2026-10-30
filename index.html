@@ -1,0 +1,16 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>简谱图片换调</title>
+<style>body{font-family:sans-serif;margin:0;padding:10px;max-width:1000px;margin:auto}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+button,select,input{font-size:16px;padding:6px 10px}
+#drop{border:2px dashed #aaa;padding:16px;text-align:center;border-radius:8px}
+canvas{max-width:100%;border:1px solid #ccc;touch-action:none}#st{color:#555}</style>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script></head><body>
+<h2>简谱图片换调</h2>
+<div id="drop">拖入 / 粘贴 / <input type="file" id="file" accept="image/*"> 选择谱子图片</div>
+<p id="st"></p>
+<div class="bar">原调 <select id="src"></select> 目标调 <select id="dst"></select>
+<button id="go">生成新图</button><button id="dl" disabled>下载 PNG</button><button id="back">返回编辑</button></div>
+<p style="font-size:14px;color:#666">红框=识别到的和弦，点框可修改（清空即删除）；在空白处点击或拖一个框可补上漏掉的和弦。</p>
+<canvas id="cv"></canvas>
+<script src="image.js"></script></body></html>
