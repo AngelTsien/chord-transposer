@@ -4,13 +4,19 @@
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
 button,select,input{font-size:16px;padding:6px 10px}
 #drop{border:2px dashed #aaa;padding:16px;text-align:center;border-radius:8px}
+#pad{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:flex-end;justify-content:center;z-index:9}
+#pad>div{background:#fff;padding:12px;border-radius:12px 12px 0 0;width:100%;max-width:520px}
+#pad .k{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}#pad .k button{min-width:44px;min-height:40px}
 canvas{max-width:100%;border:1px solid #ccc;touch-action:none}#st{color:#555}</style>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script></head><body>
 <h2>简谱图片换调</h2>
 <div id="drop">拖入 / 粘贴 / <input type="file" id="file" accept="image/*"> 选择谱子图片</div>
 <p id="st"></p>
 <div class="bar">原调 <select id="src"></select> 目标调 <select id="dst"></select>
-<button id="go">生成新图</button><button id="dl" disabled>下载 PNG</button><button id="back">返回编辑</button></div>
-<p style="font-size:14px;color:#666">红框=识别到的和弦，点框可修改（清空即删除）；在空白处点击或拖一个框可补上漏掉的和弦。</p>
+<button id="go">生成新图</button><button id="dl" disabled>下载 PNG</button><button id="back">返回编辑</button><button id="undo">撤销</button></div>
+<p style="font-size:14px;color:#666">红框=识别到的和弦，黄框=把握不大请检查。点框修改或删除；点和弦行的空白处补和弦；可撤销。</p>
 <canvas id="cv"></canvas>
+<div id="pad"><div><input id="pin" style="width:100%;font-size:20px" placeholder="和弦，如 Am7、C/E">
+<div class="k" id="proot"></div><div class="k" id="pqual"></div><div>斜线低音：</div><div class="k" id="pbass"></div>
+<div class="k"><button id="pok">确定</button><button id="pdel">删除</button><button id="pcancel">取消</button></div></div></div>
 <script src="image.js"></script></body></html>
